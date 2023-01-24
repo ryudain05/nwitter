@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { dbService } from "fBase";
+import Nweet from "components/Nweet";
 
 const Home = ({ userObj }) => {
   console.log(userObj);
@@ -40,13 +41,15 @@ const Home = ({ userObj }) => {
           placeholder="What's on your mind?"
           maxLength={120}
         />
-        <input onSubmit={onSubmit} type="submit" value="Ntweet" />
+        <input type="submit" value="Nweet" />
       </form>
       <div>
         {nweets.map((nweet) => (
-          <div key={nweet.id}>
-            <h4>{nweet.text}</h4>
-          </div>
+          <Nweet
+            key={nweet.id}
+            nweetObj={nweet}
+            isOwner={nweet.creatorId === userObj.uid}
+          />
         ))}
       </div>
     </div>
