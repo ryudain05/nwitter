@@ -21,7 +21,7 @@ const Home = ({ userObj }) => {
     event.preventDefault();
     const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
     const response = await fileRef.putString(attachment, "data_url");
-    console.log(response);
+    console.log(await response.ref.getDownloadURL());
     // await dbService.collection("nweets").add({
     //   //key
     //   text: nweet,
