@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { authService } from "fBase";
 import { useHistory } from "react-router-dom";
 
-export default ({ userObj }) => {
+export default ({ refreshUser, userObj }) => {
   const history = useHistory();
   const [NewDisplayName, setNewDisplayName] = useState(userObj.displayName);
   const onLogOutClick = () => {
@@ -21,6 +21,7 @@ export default ({ userObj }) => {
       await userObj.updateProfile({
         displayName: NewDisplayName,
       });
+      refreshUser();
     }
   };
   // const getMyNweets = async () => {
